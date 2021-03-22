@@ -11,7 +11,9 @@
 
     <title>My SOU</title>
 
-
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="{% static 'student/favicon.ico' %}" />
+    
     <!-- Bootstrap 5 CDN -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
@@ -54,7 +56,6 @@
     </style>
 </head>
 
-
 <body>
     <!-- Navbar -->
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-0">
@@ -94,12 +95,6 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/app/examForm" data-page="page1">
-                                <span data-feather="clipboard"></span>
-                                Exam Form
-                            </a>
-                        </li>
-                        <li class="nav-item">
                             <a class="nav-link" href="/app/grades" data-page="page2">
                                 <span data-feather="bar-chart-2"></span>
                                 Grades
@@ -109,6 +104,12 @@
                             <a class="nav-link" href="/app/resources" data-page="page3">
                                 <span data-feather="file-text"></span>
                                 Resources
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/app/events" data-page="page1">
+                                <span data-feather="film"></span>
+                                Events
                             </a>
                         </li>
                         <li class="nav-item">
