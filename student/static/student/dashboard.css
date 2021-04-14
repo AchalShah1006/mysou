@@ -14,8 +14,9 @@ body {
  */
 
 .sidebar {
-    position: sticky;
+    position: fixed;
     top: 0;
+    margin-top: 48px;
     /* rtl:raw:
   right: 0;
   */
@@ -29,14 +30,8 @@ body {
     box-shadow: inset -1px 0 0 rgba(0, 0, 0, .1);
 }
 
-@media (max-width: 767.98px) {
-    .sidebar {
-        top: 5rem;
-    }
-}
-
 .sidebar-sticky {
-    position: relative;
+    position: fixed;
     top: 0;
     height: calc(100vh - 48px);
     padding-top: .5rem;
@@ -69,6 +64,9 @@ body {
     text-transform: uppercase;
 }
 
+.navDivider {
+    min-height: 48px;
+}
 
 /*
  * Navbar
@@ -141,4 +139,8 @@ body {
 .successBtn:hover {
     background-color: lightgreen;
     color: white;
+}
+
+.card{
+    margin-bottom: 1.5rem;
 }

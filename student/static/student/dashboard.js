@@ -48,8 +48,8 @@
 					backgroundColor: 'rgba(255, 99, 132, 0.6)',
 					borderColor: '#f54266',
 					borderWidth: 2,
-					barPercentage: 0.7
-					// pointBackgroundColor: '#f54266'
+					barPercentage: 0.7,
+					pointBackgroundColor: '#f54266'
 				},
 				{
 					label: "Topper's SPI",

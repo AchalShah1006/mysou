@@ -1,6 +1,7 @@
 {% extends 'student/layout.html' %} {% load static %}
 
 {% block jquery %}
+<script>
     (function () {
         'use strict';
 
@@ -104,6 +105,7 @@
         }
     });
 })();
+</script>
 {% endblock %}
 
 {% block container %}
@@ -123,8 +125,8 @@
     <div class="container">
         <div class="row">
             <!-- SPI Chart -->
-            <div class="col-md my-2">
-                <div class="card" style="width: 35rem;">
+            <div class="col-sm-6 my-2">
+                <div class="card">
                     <div class="card-body">
                         <h3>SPI (Semester Performance Index) </h3>
                     </div>
@@ -134,8 +136,8 @@
                 </div>
             </div>
             <!-- CGPA Chart -->
-            <div class="col-md my-2">
-                <div class="card" style="width: 35rem;">
+            <div class="col-sm-6 my-2">
+                <div class="card">
                     <div class="card-body">
                         <h3>CPI (Cumulative Performance Index) </h3>
                     </div>

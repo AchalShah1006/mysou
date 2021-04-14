@@ -32,6 +32,13 @@ class Clubs(models.Model):
     file_link = models.TextField(max_length=100, blank=False)
     created_at = models.DateTimeField(auto_now_add=True)
 
+class Event(models.Model):
+    title = models.TextField(max_length=100, blank=False)
+    details = models.TextField(max_length=1000 ,blank=False)
+    file_name = models.TextField(max_length=50, blank=False)
+    file_link = models.TextField(max_length=100, blank=False)
+    created_at = models.DateTimeField(auto_now_add=True)
+
 class Placements(models.Model):
     company = models.TextField(max_length=100, blank=False)
     details = models.TextField(max_length=1000 ,blank=False)

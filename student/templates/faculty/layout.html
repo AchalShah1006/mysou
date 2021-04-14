@@ -5,9 +5,6 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.79.0">
 
     <title>My SOU</title>
 
@@ -59,7 +56,7 @@
 
 <body>
     <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-0">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark p-0 fixed-top">
         <div class="container-fluid">
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent"
@@ -108,25 +105,31 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/admin/clubs" data-page="page4">
+                            <a class="nav-link" href="/admin/event" data-page="page4">
+                                <span data-feather="copy"></span>
+                                Event
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="/admin/clubs" data-page="page5">
                                 <span data-feather="activity"></span>
                                 Clubs
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/admin/placement" data-page="page5">
+                            <a class="nav-link" href="/admin/placement" data-page="page6">
                                 <span data-feather="sun"></span>
                                 Placements
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/admin/settings" data-page="page5">
+                            <a class="nav-link" href="/admin/settings" data-page="page7">
                                 <span data-feather="settings"></span>
                                 Settings
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="/admin/register" data-page="page5">
+                            <a class="nav-link" href="/admin/register" data-page="page8">
                                 <span data-feather="user-plus"></span>
                                 Create User
                             </a>
@@ -142,7 +145,7 @@
                     </h6>
                     <ul class="nav flex-column mb-2">
                         <li class="nav-item">
-                            <a class="nav-link" href="/admin/leaveApplication" data-page="page7">
+                            <a class="nav-link" href="/admin/leaveApplication" data-page="page9">
                                 <span data-feather="edit"></span>
                                 Leave Application
                             </a>
@@ -158,6 +161,7 @@
             </nav>
 
             <!-- Main Components -->
+            <div class="navDivider"></div>
             {%block container%}
 
             {% endblock %}
@@ -188,11 +192,11 @@
         integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG"
         crossorigin="anonymous"></script>
 
-       <script>
-            {% block jquery %}
 
-            {% endblock %}
-       </script>
+        {% block jquery %}
+
+        {% endblock %}
+
 
     <!-- Internal Scripts -->
     <script src="{% static 'student/dashboard.js' %}"></script>

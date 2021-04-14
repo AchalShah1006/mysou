@@ -5,7 +5,7 @@ from django.http import HttpResponse, HttpResponseRedirect
 from django.urls import reverse
 from django.conf import settings
 from django.core.files.storage import FileSystemStorage
-from .models import AdminData, StudentData, Resources, Clubs, Placements
+from .models import AdminData, StudentData, Resources, Clubs, Event, Placements
 
 
 # Create your views here.
@@ -31,7 +31,7 @@ def login_view(request):
             try:
                 AdminData.objects.get(
                     username=user, password=passwd, dept_id=dept, enroll_no=enroll)
-                request.session['user'] = user
+                request.session['user'] = enroll
                 request.session['admin'] = True
                 return HttpResponseRedirect(reverse("student:index"))
             except:
@@ -42,7 +42,7 @@ def login_view(request):
             try:
                 StudentData.objects.get(
                     username=user, password=passwd, dept_id=dept, enroll_no=enroll)
-                request.session['user'] = user
+                request.session['user'] = enroll
                 request.session['admin'] = False
                 return HttpResponseRedirect(reverse("student:index"))
             except:
@@ -55,6 +55,7 @@ def login_view(request):
 def index(request):
     if request.method == "GET":
         try:
+            print(request.session['user'])
             if request.session['user']:
                 flag = request.session['admin']
                 if flag == True:
@@ -83,21 +84,24 @@ def templates(request, search):
                 resources = Resources.objects.all()
                 clubs = Clubs.objects.all()
                 placements = Placements.objects.all()
+                event = Event.objects.all()
                 if flag == True:
-                    data = AdminData.objects.get(username=user)
+                    data = AdminData.objects.get(enroll_no=user)
                     return render(request, f"faculty/{search}.html", {
                         "data": data,
                         "resources" : resources,
                         'clubs' : clubs,
-                        'placements' : placements
+                        'placements' : placements,
+                        "event" : event
                     })
                 else:
-                    data = StudentData.objects.get(username=user)
+                    data = StudentData.objects.get(enroll_no=user)
                     return render(request, f"student/{search}.html", {
                         "data": data,
                         "resources" : resources,
                         'clubs' : clubs,
-                        'placements' : placements
+                        'placements' : placements,
+                        "event" : event
                     })
         except:
             return HttpResponseRedirect(reverse("student:login"))
@@ -136,7 +140,6 @@ def templates(request, search):
                         })
         except:
             HttpResponse(500)
-            login_view()
             return render(request, "student/login.html", {
                     "message": "Please Login Again"
                 })
@@ -146,10 +149,10 @@ def setting(request):
         try:
             if request.session['user']:
                 role = request.session['admin']
-                enroll = request.session['enroll_no']
+                enroll = request.session['user']
                 passwd = request.POST['currPassword']
                 newPasswd = request.POST['newPassword']
-                # print(user,passwd,newPasswd)
+
                 if role:
                     try:
                         form = AdminData.objects.get(enroll_no=enroll, password =passwd)
@@ -169,7 +172,7 @@ def setting(request):
                         form = StudentData.objects.get(enroll_no=enroll,password=passwd)
                         form.password = newPasswd
                         form.save()
-                        # print("updated")
+
                         HttpResponseRedirect("/app/settings")
                         return render(request, "student/settings.html", {
                             "messageSuccess": "Password Updated"
@@ -181,7 +184,6 @@ def setting(request):
                         })
         except:
             HttpResponse(500)
-            login_view()
             return render(request, "student/login.html", {
                     "message": "Please Login Again"
                 })
@@ -218,6 +220,11 @@ def handleFileUpload(request, fileName):
             form = Clubs(title=title, details=details, file_name=resource.name, file_link=url)
             form.save()
         
+        # Events 
+        if fileName == "event":
+            form = Event(title=title, details=details, file_name=resource.name, file_link=url)
+            form.save()
+        
         return HttpResponseRedirect(f"/admin/{fileName}")
     else:
-        return HttpResponse(500) 
+        return HttpResponse(400) 
