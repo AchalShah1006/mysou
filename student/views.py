@@ -55,7 +55,6 @@ def login_view(request):
 def index(request):
     if request.method == "GET":
         try:
-            print(request.session['user'])
             if request.session['user']:
                 flag = request.session['admin']
                 if flag == True:
@@ -191,7 +190,6 @@ def setting(request):
 
 def handleFileUpload(request, fileName):
     if request.method == "POST":
-        print(fileName)
         title = request.POST["title"]
         details = request.POST["details"]
         try:
